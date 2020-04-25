@@ -23,7 +23,7 @@ const gameActions = {
     connectToServer: function (document, nickname) {
         this._document = document;
 
-        this._server = new GameServer(process.env.WS_URL || (process.env.NODE_ENV === 'development'
+        this._server = new GameServer(process.env.WS_URL || ((process.env.NODE_ENV === 'development')
             ? "ws://localhost:8000/conn"
             : "ws://18.195.34.86:8080/conn"))
             .userData({nickname})

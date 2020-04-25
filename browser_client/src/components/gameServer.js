@@ -89,7 +89,7 @@ export default class GameServer {
             });
         };
 
-        this._socket.onopen = ev => this.send(new UserStartGameCommand({nickname: this._nickname}));
+        this._socket.onopen = () => this.send(new UserStartGameCommand({nickname: this._nickname}));
 
         return this
     }
