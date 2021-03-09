@@ -24,9 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - run: pwd
-      - run: ls -la ./server
-      - run: docker run -i --rm -v $(pwd)/server:/root/server -w /root/server gradle:6.3-jdk11 gradle bootJar
-      - run: ls -la ./server/build/libs
+      - run: ls -la ./
+      - run: docker run -i --rm -v $(pwd):/root/server -w /root/server gradle:6.3-jdk11 gradle bootJar
+      - run: ls -la ./build/libs
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -47,7 +47,7 @@ jobs:
           IMAGE_TAG: latest
           #IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./server
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
