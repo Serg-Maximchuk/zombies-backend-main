@@ -13,6 +13,7 @@ public class Command {
     protected boolean errorCommand;
     protected boolean startGameCommand;
     protected boolean noActionCommand;
+    protected boolean chatMessageCommand;
 
     public Command() {
     }

@@ -3,25 +3,17 @@ package com.zorg.zombies.service;
 import com.zorg.zombies.model.User;
 import com.zorg.zombies.model.UserData;
 import com.zorg.zombies.persistence.UserDataRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserIdDefiner userIdDefiner;
     private final UserDataRepository userDataRepository;
     private final UsersCommunicator usersCommunicator;
 
-    @Autowired
-    public UserService(UserIdDefiner userIdDefiner,
-                       UserDataRepository userDataRepository,
-                       UsersCommunicator usersCommunicator) {
-
-        this.userIdDefiner = userIdDefiner;
-        this.userDataRepository = userDataRepository;
-        this.usersCommunicator = usersCommunicator;
-    }
 
     public User createUser(String sessionId) {
         String id = userIdDefiner.getUserId(sessionId);

@@ -1,11 +1,19 @@
 package com.zorg.zombies.command.factory;
 
+import static com.zorg.zombies.command.Command.MOVE_COMMAND_FIELD;
+import static com.zorg.zombies.command.MoveDirectionCommand.DIRECTION_FIELD;
+import static com.zorg.zombies.command.MoveDirectionCommand.MOVE_STOP_COMMAND_FIELD;
+import static com.zorg.zombies.command.UserSentChatMessageCommand.CHAT_MESSAGE_FIELD;
+import static com.zorg.zombies.command.UserStartGameCommand.NICKNAME_FIELD;
+import static com.zorg.zombies.command.UserStartGameCommand.START_GAME_COMMAND_FIELD;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zorg.zombies.command.Command;
 import com.zorg.zombies.command.ErrorCommand;
 import com.zorg.zombies.command.NoActionCommand;
 import com.zorg.zombies.command.UserMoveCommand;
+import com.zorg.zombies.command.UserSentChatMessageCommand;
 import com.zorg.zombies.command.UserStartGameCommand;
 import com.zorg.zombies.command.UserStopMoveCommand;
 import com.zorg.zombies.command.exception.CommandToJsonParseException;
@@ -13,14 +21,10 @@ import com.zorg.zombies.model.exception.WrongDirectionException;
 import com.zorg.zombies.model.geometry.Direction;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
-import static com.zorg.zombies.command.Command.MOVE_COMMAND_FIELD;
-import static com.zorg.zombies.command.MoveDirectionCommand.DIRECTION_FIELD;
-import static com.zorg.zombies.command.MoveDirectionCommand.MOVE_STOP_COMMAND_FIELD;
-import static com.zorg.zombies.command.UserStartGameCommand.NICKNAME_FIELD;
-import static com.zorg.zombies.command.UserStartGameCommand.START_GAME_COMMAND_FIELD;
-
+@Log4j2
 @Component
 @RequiredArgsConstructor
 public class CommandFactory {
@@ -66,10 +70,20 @@ public class CommandFactory {
             if (startGameField != null && startGameField.asBoolean(false)) {
                 return new UserStartGameCommand(jsonNode.get(NICKNAME_FIELD).asText());
             }
+
+            JsonNode chatMessageField = jsonNode.get(CHAT_MESSAGE_FIELD);
+            String chatMessage;
+
+            if (chatMessageField != null
+                    && ((chatMessage = chatMessageField.asText()) != null)
+                    && !"null".equalsIgnoreCase(chatMessage)
+            ) {
+                return new UserSentChatMessageCommand(chatMessage);
+            }
         } catch (Exception e) {
             return new ErrorCommand(e);
         }
-
+        log.warn("Unknown command {}", jsonCommand);
         return new NoActionCommand();
     }
 }

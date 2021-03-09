@@ -8,21 +8,18 @@ import com.zorg.zombies.map.MapChunk;
 import com.zorg.zombies.map.MapChunkSupervisor;
 import com.zorg.zombies.model.User;
 import com.zorg.zombies.model.UserSubscriber;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UsersCommunicator {
 
     private final MapChunkSupervisor mapChunkSupervisor;
 
-    @Autowired
-    public UsersCommunicator(MapChunkSupervisor mapChunkSupervisor) {
-        this.mapChunkSupervisor = mapChunkSupervisor;
-    }
 
     public void notifyUsers(WorldChange change) {
         UserChange userChange = change.getUser();

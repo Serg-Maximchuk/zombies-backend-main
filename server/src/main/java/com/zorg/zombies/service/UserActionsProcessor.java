@@ -1,9 +1,11 @@
 package com.zorg.zombies.service;
 
+import com.zorg.zombies.addon.chat.Chat;
 import com.zorg.zombies.change.WorldChange;
 import com.zorg.zombies.command.Command;
 import com.zorg.zombies.command.ErrorCommand;
 import com.zorg.zombies.command.UserMoveCommand;
+import com.zorg.zombies.command.UserSentChatMessageCommand;
 import com.zorg.zombies.command.UserStartGameCommand;
 import com.zorg.zombies.command.UserStopMoveCommand;
 import com.zorg.zombies.model.Coordinates;
@@ -15,10 +17,12 @@ import lombok.extern.log4j.Log4j2;
 public class UserActionsProcessor extends FluxProcessorDelegatingSubscriber<Command, WorldChange> {
 
     private final User user;
+    private final Chat chat;
 
-    UserActionsProcessor(User user) {
+    UserActionsProcessor(User user, Chat chat) {
         super(user.getSubscriber());
         this.user = user;
+        this.chat = chat;
     }
 
     @Override
@@ -31,6 +35,12 @@ public class UserActionsProcessor extends FluxProcessorDelegatingSubscriber<Comm
             } else {
                 throw new WrongMoveCommandException(command);
             }
+        } else if (command.isChatMessageCommand()) {
+            chat.sendMessage(
+                    user.getId(),
+                    user.getNickname(),
+                    ((UserSentChatMessageCommand) command).getChatMessage()
+            );
         } else if (command.isStartGameCommand()) {
             UserStartGameCommand startGameCommand = (UserStartGameCommand) command;
             user.setNickname(startGameCommand.getNickname());

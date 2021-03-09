@@ -1,15 +1,16 @@
 package com.zorg.zombies;
 
+import static utils.functions.Value.with;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter;
 
 import java.util.Map;
-
-import static utils.functions.Value.with;
 
 @SpringBootApplication
 public class ZombiesApplication {
@@ -21,6 +22,7 @@ public class ZombiesApplication {
     }
 
     @Bean
+    @ConditionalOnMissingBean(WebSocketHandlerAdapter.class)
     public WebSocketHandlerAdapter webSocketHandlerAdapter() {
         return new WebSocketHandlerAdapter();
     }
