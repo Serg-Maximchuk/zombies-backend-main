@@ -1,9 +1,10 @@
 {
   "ipcMode": null,
-  "executionRoleArn": null,
+  "executionRoleArn": "arn:aws:iam::736762908522:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
+      "environmentFiles": null,
       "logConfiguration": null,
       "entryPoint": null,
       "portMappings": [
@@ -49,15 +50,41 @@
     }
   ],
   "placementConstraints": [],
-  "memory": "512",
-  "taskRoleArn": null,
+  "memory": "1900",
+  "taskRoleArn": "arn:aws:iam::736762908522:role/ecsTaskExecutionRole",
+  "compatibilities": [
+    "EC2"
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:eu-central-1:736762908522:task-definition/zombies-back:14",
   "family": "zombies-back",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
+    }
+  ],
   "pidMode": null,
   "requiresCompatibilities": [
     "EC2"
   ],
-  "networkMode": "bridge",
-  "cpu": null,
+  "networkMode": null,
+  "cpu": "1800",
+  "revision": 14,
+  "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
   "volumes": []
