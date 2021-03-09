@@ -1,16 +1,16 @@
 package com.zorg.zombies.model;
 
-import com.zorg.zombies.model.geometry.Direction;
-import lombok.Data;
-
-import java.util.concurrent.atomic.AtomicInteger;
-
 import static com.zorg.zombies.model.geometry.Direction.DOWN;
 import static com.zorg.zombies.model.geometry.Direction.EAST;
 import static com.zorg.zombies.model.geometry.Direction.NORTH;
 import static com.zorg.zombies.model.geometry.Direction.SOUTH;
 import static com.zorg.zombies.model.geometry.Direction.UP;
 import static com.zorg.zombies.model.geometry.Direction.WEST;
+
+import com.zorg.zombies.model.geometry.Direction;
+import lombok.Data;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 public class Coordinates {

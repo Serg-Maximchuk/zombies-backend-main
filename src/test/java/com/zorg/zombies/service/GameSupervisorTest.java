@@ -1,5 +1,13 @@
 package com.zorg.zombies.service;
 
+import static com.zorg.zombies.model.geometry.Direction.EAST;
+import static com.zorg.zombies.model.geometry.Direction.NORTH;
+import static com.zorg.zombies.model.geometry.Direction.SOUTH;
+import static com.zorg.zombies.model.geometry.Direction.WEST;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.zorg.zombies.change.UserChange;
 import com.zorg.zombies.change.UserMovingChange;
 import com.zorg.zombies.change.UserStopMovingChange;
@@ -24,14 +32,6 @@ import reactor.test.StepVerifier;
 
 import java.time.Duration;
 import java.util.function.Consumer;
-
-import static com.zorg.zombies.model.geometry.Direction.EAST;
-import static com.zorg.zombies.model.geometry.Direction.NORTH;
-import static com.zorg.zombies.model.geometry.Direction.SOUTH;
-import static com.zorg.zombies.model.geometry.Direction.WEST;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

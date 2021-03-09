@@ -1,5 +1,11 @@
 package com.zorg.zombies;
 
+import static com.zorg.zombies.ZombiesApplication.ENTRY;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.BDDMockito.anyString;
+import static org.mockito.BDDMockito.given;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zorg.zombies.change.WorldOnLoad;
 import com.zorg.zombies.command.UserStartGameCommand;
@@ -26,12 +32,6 @@ import java.net.URISyntaxException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.zorg.zombies.ZombiesApplication.ENTRY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.BDDMockito.anyString;
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

@@ -1,5 +1,8 @@
 package com.zorg.zombies.map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.zorg.zombies.change.OnLoadUserChange;
 import com.zorg.zombies.change.UserChange;
 import com.zorg.zombies.change.UserPositionChange;
@@ -18,15 +21,12 @@ import reactor.test.StepVerifier;
 import java.time.Duration;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 @ExtendWith(MockitoExtension.class)
 class DefaultMapChunkTest {
 
     private static final Duration TIMEOUT = Duration.ofSeconds(3);
 
-    private UsersCommunicator communicator = Mockito.mock(UsersCommunicator.class);
+    private final UsersCommunicator communicator = Mockito.mock(UsersCommunicator.class);
 
     @Test
     void notifyUsers_When_NoUsersSubscribedYet_Expect_SilentConsumingByChunk() {

@@ -1,5 +1,16 @@
 package com.zorg.zombies.service;
 
+import static com.zorg.zombies.model.geometry.Direction.DOWN;
+import static com.zorg.zombies.model.geometry.Direction.EAST;
+import static com.zorg.zombies.model.geometry.Direction.NORTH;
+import static com.zorg.zombies.model.geometry.Direction.SOUTH;
+import static com.zorg.zombies.model.geometry.Direction.UP;
+import static com.zorg.zombies.model.geometry.Direction.WEST;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+
 import com.zorg.zombies.change.UserChange;
 import com.zorg.zombies.change.UserMovingChange;
 import com.zorg.zombies.change.UserStopMovingChange;
@@ -14,17 +25,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
-
-import static com.zorg.zombies.model.geometry.Direction.DOWN;
-import static com.zorg.zombies.model.geometry.Direction.EAST;
-import static com.zorg.zombies.model.geometry.Direction.NORTH;
-import static com.zorg.zombies.model.geometry.Direction.SOUTH;
-import static com.zorg.zombies.model.geometry.Direction.UP;
-import static com.zorg.zombies.model.geometry.Direction.WEST;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
 class UserUpdaterTest {

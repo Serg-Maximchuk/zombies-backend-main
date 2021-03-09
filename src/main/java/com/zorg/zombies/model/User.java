@@ -1,5 +1,13 @@
 package com.zorg.zombies.model;
 
+import static com.zorg.zombies.Constants.HUMAN_WALK_DELAY_MS;
+import static com.zorg.zombies.model.geometry.Direction.DOWN;
+import static com.zorg.zombies.model.geometry.Direction.EAST;
+import static com.zorg.zombies.model.geometry.Direction.NORTH;
+import static com.zorg.zombies.model.geometry.Direction.SOUTH;
+import static com.zorg.zombies.model.geometry.Direction.UP;
+import static com.zorg.zombies.model.geometry.Direction.WEST;
+
 import com.zorg.zombies.change.UserChange;
 import com.zorg.zombies.change.UserPositionChange;
 import com.zorg.zombies.change.WorldChange;
@@ -21,14 +29,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import static com.zorg.zombies.Constants.HUMAN_WALK_DELAY_MS;
-import static com.zorg.zombies.model.geometry.Direction.DOWN;
-import static com.zorg.zombies.model.geometry.Direction.EAST;
-import static com.zorg.zombies.model.geometry.Direction.NORTH;
-import static com.zorg.zombies.model.geometry.Direction.SOUTH;
-import static com.zorg.zombies.model.geometry.Direction.UP;
-import static com.zorg.zombies.model.geometry.Direction.WEST;
 
 @Log4j2
 public class User extends UserSubscriber implements Destroyable {

@@ -15,7 +15,7 @@ public class DefaultMapChunk implements MapChunk {
     public static final int DEFAULT_WIDTH = 1024;
     public static final int DEFAULT_HEIGHT = 1024;
 
-    private volatile Map<String, User> userIdToUser = new ConcurrentHashMap<>();
+    private final Map<String, User> userIdToUser = new ConcurrentHashMap<>();
 
     @Override
     public void notifyUsers(WorldChange change) {
